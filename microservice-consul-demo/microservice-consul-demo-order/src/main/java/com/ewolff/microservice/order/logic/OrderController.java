@@ -2,6 +2,11 @@ package com.ewolff.microservice.order.logic;
 
 import java.util.Collection;
 
+import com.ewolff.microservice.order.clients.CatalogClient;
+import com.ewolff.microservice.order.clients.Customer;
+import com.ewolff.microservice.order.clients.CustomerClient;
+import com.ewolff.microservice.order.clients.Item;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,11 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.ewolff.microservice.order.clients.CatalogClient;
-import com.ewolff.microservice.order.clients.Customer;
-import com.ewolff.microservice.order.clients.CustomerClient;
-import com.ewolff.microservice.order.clients.Item;
 
 @Controller
 class OrderController {
@@ -74,7 +74,7 @@ class OrderController {
 		return new ModelAndView("success");
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public ModelAndView post(@PathVariable("id") long id) {
 		orderRepository.deleteById(id);
 
